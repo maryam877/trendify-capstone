@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import matplotlib as mpl
 
+
 def load_clean_data(path='outputs/final_orders_clean.csv'):
     """Load the cleaned dataset for analysis."""
     return pd.read_csv(path)
@@ -84,6 +85,65 @@ mpl.rcParams['axes.titlesize'] = 14
 mpl.rcParams['axes.labelsize'] = 12
 mpl.rcParams['xtick.labelsize'] = 11
 mpl.rcParams['ytick.labelsize'] = 11
+
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+def plot_underperforming_sellers(df):
+    # Drop rows without seller_id
+    df = df.dropna(subset=['seller_id'])
+
+    # Calculate performance metrics
+    seller_stats = df.groupby('seller_id').agg(
+        avg_delay=('delivery_delay', 'mean'),
+        num_orders=('order_id', 'count'),
+        bad_review_rate=('review_score', lambda x: (x <= 2).mean())
+    ).reset_index()
+
+    # Filter to sellers with at least 50 orders
+    seller_stats = seller_stats[seller_stats['num_orders'] >= 50]
+
+    # Sort by average delay and bad review rate
+    top_delay = seller_stats.sort_values('avg_delay', ascending=False).head(10)
+    top_bad_reviews = seller_stats.sort_values('bad_review_rate', ascending=False).head(10)
+
+    # Plot: Top 10 by Avg Delay
+    plt.figure(figsize=(10, 6))
+    sns.barplot(data=top_delay, x='avg_delay', y='seller_id', palette='Blues_d')
+    plt.title('Top 10 Sellers by Average Delivery Delay')
+    plt.xlabel('Average Delay (days)')
+    plt.ylabel('Seller ID')
+    plt.tight_layout()
+    plt.show()
+
+    # Plot: Top 10 by Bad Review Rate
+    plt.figure(figsize=(10, 6))
+    sns.barplot(data=top_bad_reviews, x='bad_review_rate', y='seller_id', palette='Blues_d')
+    plt.title('Top 10 Sellers by Bad Review Rate (1-2 stars)')
+    plt.xlabel('Proportion of Bad Reviews')
+    plt.ylabel('Seller ID')
+    plt.tight_layout()
+    plt.show()
+
+
+
+
+def state_performance(df):
+    state_stats = df.groupby('seller_state').agg(
+        avg_delay=('delivery_delay', 'mean'),
+        bad_reviews=('review_score', lambda x: (x <= 2).mean())
+    ).reset_index()
+
+    worst_states = state_stats.sort_values(by='avg_delay', ascending=False).head(10)
+
+    plt.figure(figsize=(12, 6))
+    sns.barplot(x='avg_delay', y='seller_state', data=worst_states, palette='Blues_d')
+    plt.title('Top 10 States by Avg Delivery Delay')
+    plt.xlabel('Average Delay (days)')
+    plt.ylabel('State')
+    plt.tight_layout()
+    plt.show()
 
 
 
