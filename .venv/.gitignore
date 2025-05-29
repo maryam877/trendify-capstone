@@ -1,0 +1,7 @@
+# created by virtualenv automatically
+
+outputs/*.csv
+__pycache__/
+.venv/
+
+
