@@ -1,6 +1,6 @@
 # Trendify ETL Pipeline
 
-This project is part of a data consulting capstone. It processes Olist's Brazilian e-commerce dataset to generate clean, structured data for business analysis.
+This project is part of a data consulting capstone. It processes Brazilian e-commerce dataset to generate clean, structured data for business analysis.
 
 ## 🧩 Project Structure
 
@@ -51,4 +51,7 @@ This ETL pipeline prepares a ready-to-analyze dataset that helps Trendify:
 
 ## 📌 Author
 
-Maryam Abdulhuseynov – Capstone Project for Data Consulting
+Maryam – Capstone Project for Data Consulting
+
+# trendify-capstone
+07311b17a6d48223c48b0bfa2f447bd5cb9fe1a6
