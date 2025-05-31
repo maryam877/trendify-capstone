@@ -1,8 +1,25 @@
 # EDA Visual Summary
 ## Summary of Visuals
-- Share of Late Deliveries: Majority of orders are on time.
+- Share of Late Deliveries: Majority orders are on time.
 - Review Score Distribution: Most customers leave 5-star reviews.
-- Delay vs Review: Late deliveries lead to more negative reviews.
+- Delay vs Review: Late deliveries lead to more negative reviews. 
+- Under-performing Sellers: Certain sellers consistently show higher average delays and more bad reviews.
+
+-----
+
+## Under-performing Sellers
+
+Analysis based on delivery delay and negative review rate reveals key under-performers:
+
+- Sellers with the highest **average delivery delays** can be targeted for logistics improvements.
+- Sellers with the highest **rate of 1-2 star reviews** highlight areas of poor customer satisfaction.
+
+These insights support:
+-  Better seller vetting
+-  Smarter logistics partnerships
+-  Regional performance optimization
+
+--------
 
 ## What are problematic orders?
 
